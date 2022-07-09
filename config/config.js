@@ -22,7 +22,7 @@ Config.defaultserver = {
 	host: 'localhost',
 	port: 8000,
 	httpport: 8000,
-	altport: 80,
+	altport: 8000,
 	registered: true
 };
 

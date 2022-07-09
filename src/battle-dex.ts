@@ -817,8 +817,8 @@ const Dex = new class implements ModdedDex {
 		if (!type) type = '???';
 		let sanitizedType = type.replace(/\?/g, '%3f');
 
-		if(type.toLocaleLowerCase() === "unknown") {
-			return `<img src="./sprites/types/${sanitizedType}.png" alt="${type}" height="14" width="32" class="pixelated${b ? ' b' : ''}" />`;
+		if(sanitizedType.toLocaleLowerCase() === "unknown") {
+			return `<img src="./sprites/types/${sanitizedType.toLowerCase()}.png" alt="${type}" height="14" width="32" class="pixelated${b ? ' b' : ''}" />`;
 		}
 
 		return `<img src="${Dex.resourcePrefix}sprites/types/${sanitizedType}.png" alt="${type}" height="14" width="32" class="pixelated${b ? ' b' : ''}" />`;

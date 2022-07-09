@@ -240,6 +240,7 @@
 				cap: "CAP",
 				caplc: "CAP LC",
 				capnfe: "CAP NFE",
+				pkf: "PKF",
 				uubl: "UUBL",
 				rubl: "RUBL",
 				nubl: "NUBL",

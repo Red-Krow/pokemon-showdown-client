@@ -46,6 +46,8 @@ function toUserid(text: any) {
 	return toID(text);
 }
 
+const customMons = [ "prinpawn", "coureen", "kincurs", "posord", "toxlime", "toxlimeagua", "toxlimeelectrico", "wintass", "prabbit", "strancloud", "strancloudmega", "darkpikachu", "honedgemonado", "armoredmewtwo", "catermanocaterpie", "micomon", "fancyprobopass", "luckycamerupt", "luckycameruptmega"];
+
 type Comparable = number | string | boolean | Comparable[] | {reverse: Comparable};
 const PSUtils = new class {
 	/**
@@ -644,6 +646,10 @@ const Dex = new class implements ModdedDex {
 			spriteData.url += dir + '/' + name + '.png';
 		}
 
+		if(customMons.includes(species.id)) {
+			spriteData.url = `./sprites/${dir}/${name}.png`;
+		}
+
 		if (!options.noScale) {
 			if (graphicsGen > 4) {
 				// no scaling
@@ -726,7 +732,12 @@ const Dex = new class implements ModdedDex {
 		let top = Math.floor(num / 12) * 30;
 		let left = (num % 12) * 40;
 		let fainted = ((pokemon as Pokemon | ServerPokemon)?.fainted ? `;opacity:.3;filter:grayscale(100%) brightness(.5)` : ``);
-		return `background:transparent url(${Dex.resourcePrefix}sprites/pokemonicons-sheet.png?v8) no-repeat scroll -${left}px -${top}px${fainted}`;
+
+		if(customMons.includes(id)) {
+			return `background:transparent url(./sprites/pokemonicons/${id}.png) no-repeat scroll ${fainted}`;
+		} else {
+			return `background:transparent url(${Dex.resourcePrefix}sprites/pokemonicons-sheet.png?v8) no-repeat scroll -${left}px -${top}px${fainted}`;
+		}
 	}
 
 	getTeambuilderSpriteData(pokemon: any, gen: number = 0): TeambuilderSpriteData {
@@ -778,8 +789,16 @@ const Dex = new class implements ModdedDex {
 
 	getTeambuilderSprite(pokemon: any, gen: number = 0) {
 		if (!pokemon) return '';
+
 		const data = this.getTeambuilderSpriteData(pokemon, gen);
 		const shiny = (data.shiny ? '-shiny' : '');
+
+		let id = toID(pokemon.species);
+		
+		if(customMons.includes(id)) {
+			return 'background-image:url(' + data.spriteDir + shiny + '/' + data.spriteid + '.png);background-position:' + data.x + 'px ' + data.y + 'px;background-repeat:no-repeat';
+		}
+
 		return 'background-image:url(' + Dex.resourcePrefix + data.spriteDir + shiny + '/' + data.spriteid + '.png);background-position:' + data.x + 'px ' + data.y + 'px;background-repeat:no-repeat';
 	}
 
@@ -797,6 +816,11 @@ const Dex = new class implements ModdedDex {
 		type = this.types.get(type).name;
 		if (!type) type = '???';
 		let sanitizedType = type.replace(/\?/g, '%3f');
+
+		if(type.toLocaleLowerCase() === "unknown") {
+			return `<img src="./sprites/types/${sanitizedType}.png" alt="${type}" height="14" width="32" class="pixelated${b ? ' b' : ''}" />`;
+		}
+
 		return `<img src="${Dex.resourcePrefix}sprites/types/${sanitizedType}.png" alt="${type}" height="14" width="32" class="pixelated${b ? ' b' : ''}" />`;
 	}
 

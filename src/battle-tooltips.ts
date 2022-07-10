@@ -1121,6 +1121,11 @@ class BattleTooltips {
 			stats.def = Math.floor(stats.def * 1.5);
 		}
 
+		if (item === 'nanabberry' && speciesName === 'Tropius') {
+			stats.atk = Math.floor(stats.spd * 1.5);
+			stats.spe = Math.floor(stats.spe * 1.5);
+		}
+
 		if (speciesName === 'Ditto' && !(clientPokemon && 'transform' in clientPokemon.volatiles)) {
 			if (item === 'quickpowder') {
 				speedModifiers.push(2);

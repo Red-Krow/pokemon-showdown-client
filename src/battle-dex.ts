@@ -622,6 +622,10 @@ const Dex = new class implements ModdedDex {
 			spriteData.cryurl += '.mp3';
 		}
 
+		if (customMons.includes(toID(species.name))) {
+			spriteData.cryurl = `./sprites/audio/${toID(species.name)}.mp3`;
+		}
+
 		if (animationData[facing + 'f'] && options.gender === 'F') facing += 'f';
 		let allowAnim = !Dex.prefs('noanim') && !Dex.prefs('nogif');
 		if (allowAnim && spriteData.gen >= 6) spriteData.pixelated = false;

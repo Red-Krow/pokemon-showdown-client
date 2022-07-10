@@ -1875,6 +1875,7 @@ export class PokemonSprite extends Sprite {
 
 	constructor(spriteData: SpriteData | null, pos: InitScenePos, scene: BattleScene, isFrontSprite: boolean) {
 		super(spriteData, pos, scene);
+		console.log(spriteData);
 		this.cryurl = this.sp.cryurl;
 		this.isFrontSprite = isFrontSprite;
 	}

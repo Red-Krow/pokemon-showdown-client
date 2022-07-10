@@ -815,7 +815,7 @@ const Dex = new class implements ModdedDex {
 		let left = (num % 16) * 24;
 
 		if(num >= 1000) {
-			return 'background:transparent url(./sprites/items/' + num + '.png) no-repeat scroll';
+			return 'background:transparent url(./sprites/items/' + num + '.png) no-repeat scroll -5px -5px';
 		}
 
 		return 'background:transparent url(' + Dex.resourcePrefix + 'sprites/itemicons-sheet.png?g8) no-repeat scroll -' + left + 'px -' + top + 'px';

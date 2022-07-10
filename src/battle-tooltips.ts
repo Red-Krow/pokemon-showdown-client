@@ -1032,10 +1032,93 @@ class BattleTooltips {
 			stats.spa *= 2;
 		}
 
+		if (item === 'heartscale' && speciesName === 'Luvdisc') {
+			stats.spa *= 2;
+			stats.spd *= 2;
+			stats.spe *= 2;
+		}
+
+		if (item === 'stick') {
+            if (speciesName === 'Farfetch\u2019d') {
+                stats.atk = Math.floor(stats.atk * 1.5);
+                stats.spe = Math.floor(stats.spe * 1.5);
+            }
+        }
+
+		if (item === 'luckypunch') {
+            if (speciesName === 'Ledyba' || speciesName === 'Ledian') {
+                stats.atk *= 2;
+                stats.spa *= 2;
+            }
+        }
+
+		if (item === 'tinymushroom' && (speciesName === 'Paras' || speciesName === 'Parasect')) {
+			stats.spa = Math.floor(stats.spa * 1.5);
+			stats.atk = Math.floor(stats.atk * 1.5);
+			stats.spe = Math.floor(stats.spe * 1.5);
+		}
+
+		if (item === 'bigmushroom' && (speciesName === 'Paras' || speciesName === 'Parasect')) {
+			stats.def *= 2;
+			stats.spd *= 2;
+		}
+
+		if (item === 'everstone' && speciesName === 'Eevee') {
+			stats.spa = Math.floor(stats.spa * 1.5);
+			stats.def = Math.floor(stats.def * 1.5);
+			stats.spd = Math.floor(stats.spd * 1.5);
+			stats.atk = Math.floor(stats.atk * 1.5);
+			stats.spe = Math.floor(stats.spe * 1.5);
+		}
+
+		if (item === 'yellowflute' && speciesName === 'Spinda') {
+			stats.spa = Math.floor(stats.spa * 1.5);
+			stats.def = Math.floor(stats.def * 1.5);
+			stats.spd = Math.floor(stats.spd * 1.5);
+			stats.atk = Math.floor(stats.atk * 1.5);
+			stats.spe = Math.floor(stats.spe * 1.5);
+		}
+
+		if (item === 'blueflute' && speciesName === 'Delibird') {
+			stats.spa = Math.floor(stats.spa * 1.5);
+			stats.spe = Math.floor(stats.spe * 1.5);
+		}
+
 		if (item === 'thickclub') {
 			if (speciesName === 'Marowak' || speciesName === 'Cubone') {
 				stats.atk *= 2;
 			}
+		}
+
+		if (item === 'redflute' && speciesName === 'Volbeat' || speciesName === 'Illumise') {
+			stats.def = Math.floor(stats.def * 1.5);
+			stats.spd = Math.floor(stats.spd * 1.5);
+			stats.spe = Math.floor(stats.spe * 1.5);
+		}
+
+		if (item === 'pokedoll' && speciesName === 'Delcatty') {
+			stats.spa = Math.floor(stats.spa * 1.5);
+			stats.spd = Math.floor(stats.spd * 1.5);
+			stats.spe = Math.floor(stats.spe * 1.5);
+		}
+
+		if (item === 'fluffytail' && speciesName === 'Furret') {
+			stats.spd *= 3;
+		}
+
+		if (item === 'smokeball' && (speciesName === 'Dustox' || speciesName === 'Beautifly')) {
+			stats.spd = Math.floor(stats.spd * 1.5);
+			stats.spa = Math.floor(stats.spa * 1.5);
+		}
+
+		if (item === 'cleansetag' && speciesName === 'Chimecho') {
+			stats.spd = Math.floor(stats.spd * 1.5);
+			stats.def = Math.floor(stats.def * 1.5);
+		}
+
+		if (item === 'soothebell' && speciesName === 'Wigglytuff') {
+			stats.spd = Math.floor(stats.spd * 1.5);
+			stats.def = Math.floor(stats.def * 1.5);
 		}
 
 		if (speciesName === 'Ditto' && !(clientPokemon && 'transform' in clientPokemon.volatiles)) {

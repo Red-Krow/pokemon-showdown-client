@@ -551,7 +551,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 	set: PokemonSet | null = null;
 
 	protected formatType: 'doubles' | 'bdsp' | 'bdspdoubles' | 'letsgo' | 'metronome' | 'natdex' | 'nfe' |
-	'dlc1' | 'dlc1doubles' | 'stadium' | null = null;
+	'dlc1' | 'dlc1doubles' | 'stadium' | 'pkf' | null = null;
 
 	/**
 	 * Cached copy of what the results list would be with only base filters
@@ -617,6 +617,9 @@ abstract class BattleTypedSearch<T extends SearchType> {
 				format.includes('natdex') ? format.slice(6) : format.slice(11)) as ID;
 			this.formatType = 'natdex';
 			if (!format) format = 'ou' as ID;
+		}
+		if (format.includes('pokefabrica') || format.includes('pkf')) {
+			this.formatType = 'pkf';
 		}
 		if (this.formatType === 'letsgo') format = format.slice(6) as ID;
 		if (format.includes('metronome')) {
@@ -780,7 +783,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		return false;
 	}
 	getTier(pokemon: Species) {
-		if (this.formatType === 'metronome' || this.formatType === 'natdex') {
+		if (this.formatType === 'metronome' || this.formatType === 'natdex' || this.formatType === 'pkf') {
 			return pokemon.num >= 0 ? String(pokemon.num) : pokemon.tier;
 		}
 		let table = window.BattleTeambuilderTable;
@@ -859,6 +862,9 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			case 'syclar':
 				results.push(['header', "CAP"]);
 				break;
+			case 'prinpawn':
+				results.push(['header', "PKF"]);
+				break;
 			case 'pikachucosplay':
 				continue;
 			}
@@ -896,6 +902,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			table = table['gen7letsgo'];
 		} else if (this.formatType === 'natdex') {
 			table = table['natdex'];
+		} else if(this.formatType === 'pkf') {
+			table = table['pkf'];
 		} else if (this.formatType === 'metronome') {
 			table = table['metronome'];
 		} else if (this.formatType === 'nfe') {
@@ -1136,7 +1144,7 @@ class BattleItemSearch extends BattleTypedSearch<'item'> {
 		let table = BattleTeambuilderTable;
 		if (this.formatType?.startsWith('bdsp')) {
 			table = table['gen8bdsp'];
-		} else if (this.formatType === 'natdex') {
+		} else if (this.formatType === 'natdex' || this.formatType === 'pkf') {
 			table = table['natdex'];
 		} else if (this.formatType === 'metronome') {
 			table = table['metronome'];
@@ -1459,7 +1467,7 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 					) {
 						continue;
 					}
-					if (this.formatType !== 'natdex' && move.isNonstandard === "Past") {
+					if (!(this.formatType === 'natdex' || this.formatType === 'pkf') && move.isNonstandard === "Past") {
 						continue;
 					}
 					if (
@@ -1489,12 +1497,12 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 				if (sketch) {
 					if (move.noSketch || move.isMax || move.isZ) continue;
 					if (move.isNonstandard && move.isNonstandard !== 'Past') continue;
-					if (move.isNonstandard === 'Past' && this.formatType !== 'natdex') continue;
+					if (move.isNonstandard === 'Past' && !(this.formatType === 'natdex' || this.formatType === 'pkf')) continue;
 					sketchMoves.push(move.id);
 				} else {
-					if (!(dex.gen < 8 || this.formatType === 'natdex') && move.isZ) continue;
+					if (!(dex.gen < 8 || this.formatType === 'natdex' || this.formatType === 'pkf') && move.isZ) continue;
 					if (typeof move.isMax === 'string') continue;
-					if (move.isNonstandard === 'Past' && this.formatType !== 'natdex') continue;
+					if (move.isNonstandard === 'Past' && !(this.formatType === 'natdex' || this.formatType === 'pkf')) continue;
 					if (move.isNonstandard === 'LGPE' && this.formatType !== 'letsgo') continue;
 					moves.push(move.id);
 				}

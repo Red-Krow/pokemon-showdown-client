@@ -743,7 +743,7 @@ const Dex = new class implements ModdedDex {
 
 		// MODIFICADO PARA PXP
 		if(customMons.includes(id)) {
-			return `background:transparent url(./sprites/pokemonicons/${id}.png) no-repeat scroll 5px -2px ${fainted}`;
+			return `background:transparent url(./sprites/pokemonicons/${id}.png) no-repeat scroll ${fainted}`;
 		} else {
 			return `background:transparent url(${Dex.resourcePrefix}sprites/pokemonicons-sheet.png?v8) no-repeat scroll -${left}px -${top}px${fainted}`;
 		}

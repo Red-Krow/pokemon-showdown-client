@@ -46,7 +46,7 @@ function toUserid(text: any) {
 	return toID(text);
 }
 
-const customMons = [ "prinpawn", "coureen", "kincurs", "posord", "toxlime", "toxlimeagua", "toxlimeelectrico", "wintass", "prabbit", "strancloud", "strancloudmega", "darkpikachu", "honedgemonado", "armoredmewtwo", "catermanocaterpie", "micomon", "fancyprobopass", "luckycamerupt", "luckycameruptmega"];
+const customMons = [ "prinpawn", "coureen", "kincurs", "posord", "toxlime", "toxlimeagua", "toxlimeelectrico", "wintass", "prabbit", "strancloud", "strancloudmega", "darkpikachu", "honedgemonado", "armoredmewtwo", "catermanocaterpie", "micomon", "fancyprobopass", "luckycamerupt", "luckycameruptmega", "wooloka"];
 
 type Comparable = number | string | boolean | Comparable[] | {reverse: Comparable};
 const PSUtils = new class {

@@ -240,7 +240,7 @@
 				cap: "CAP",
 				caplc: "CAP LC",
 				capnfe: "CAP NFE",
-				pkf: "PKF",
+				pxp: "PXP", // MODIFICADO PARA PXP
 				uubl: "UUBL",
 				rubl: "RUBL",
 				nubl: "NUBL",

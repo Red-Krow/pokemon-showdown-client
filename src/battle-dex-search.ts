@@ -551,7 +551,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 	set: PokemonSet | null = null;
 
 	protected formatType: 'doubles' | 'bdsp' | 'bdspdoubles' | 'letsgo' | 'metronome' | 'natdex' | 'nfe' |
-	'dlc1' | 'dlc1doubles' | 'stadium' | 'pkf' | null = null;
+	'dlc1' | 'dlc1doubles' | 'stadium' | 'pxp' | null = null; // MODIFICADO PARA PXP
 
 	/**
 	 * Cached copy of what the results list would be with only base filters
@@ -618,9 +618,11 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType = 'natdex';
 			if (!format) format = 'ou' as ID;
 		}
-		if (format.includes('pokefabrica') || format.includes('pkf')) {
-			this.formatType = 'pkf';
+		// MODIFICADO PARA PXP
+		if (format.includes('pokefabrica') || format.includes('pxp')) {
+			this.formatType = 'pxp';
 		}
+		// MODIFICADO PARA PXP
 		if (this.formatType === 'letsgo') format = format.slice(6) as ID;
 		if (format.includes('metronome')) {
 			this.formatType = 'metronome';
@@ -783,9 +785,11 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		return false;
 	}
 	getTier(pokemon: Species) {
-		if (this.formatType === 'metronome' || this.formatType === 'natdex' || this.formatType === 'pkf') {
+		// MODIFICADO PARA PXP
+		if (this.formatType === 'metronome' || this.formatType === 'natdex' || this.formatType === 'pxp') {
 			return pokemon.num >= 0 ? String(pokemon.num) : pokemon.tier;
 		}
+		// MODIFICADO PARA PXP
 		let table = window.BattleTeambuilderTable;
 		const gen = this.dex.gen;
 		const tableKey = this.formatType === 'doubles' ? `gen${gen}doubles` :
@@ -862,9 +866,11 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			case 'syclar':
 				results.push(['header', "CAP"]);
 				break;
+			// MODIFICADO PARA PXP
 			case 'prinpawn':
-				results.push(['header', "PKF"]);
+				results.push(['header', "PXP"]);
 				break;
+			// MODIFICADO PARA PXP
 			case 'pikachucosplay':
 				continue;
 			}
@@ -902,8 +908,10 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			table = table['gen7letsgo'];
 		} else if (this.formatType === 'natdex') {
 			table = table['natdex'];
-		} else if(this.formatType === 'pkf') {
-			table = table['pkf'];
+		// MODIFICADO PARA PXP
+		} else if(this.formatType === 'pxp') {
+			table = table['pxp'];
+		// MODIFICADO PARA PXP
 		} else if (this.formatType === 'metronome') {
 			table = table['metronome'];
 		} else if (this.formatType === 'nfe') {
@@ -1144,7 +1152,7 @@ class BattleItemSearch extends BattleTypedSearch<'item'> {
 		let table = BattleTeambuilderTable;
 		if (this.formatType?.startsWith('bdsp')) {
 			table = table['gen8bdsp'];
-		} else if (this.formatType === 'natdex' || this.formatType === 'pkf') {
+		} else if (this.formatType === 'natdex' || this.formatType === 'pxp') { // MODIFICADO PARA PXP
 			table = table['natdex'];
 		} else if (this.formatType === 'metronome') {
 			table = table['metronome'];
@@ -1467,7 +1475,7 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 					) {
 						continue;
 					}
-					if (!(this.formatType === 'natdex' || this.formatType === 'pkf') && move.isNonstandard === "Past") {
+					if (!(this.formatType === 'natdex' || this.formatType === 'pxp') && move.isNonstandard === "Past") { // MODIFICADO PARA PXP
 						continue;
 					}
 					if (
@@ -1497,12 +1505,12 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 				if (sketch) {
 					if (move.noSketch || move.isMax || move.isZ) continue;
 					if (move.isNonstandard && move.isNonstandard !== 'Past') continue;
-					if (move.isNonstandard === 'Past' && !(this.formatType === 'natdex' || this.formatType === 'pkf')) continue;
+					if (move.isNonstandard === 'Past' && !(this.formatType === 'natdex' || this.formatType === 'pxp')) continue;
 					sketchMoves.push(move.id);
 				} else {
-					if (!(dex.gen < 8 || this.formatType === 'natdex' || this.formatType === 'pkf') && move.isZ) continue;
+					if (!(dex.gen < 8 || this.formatType === 'natdex' || this.formatType === 'pxp') && move.isZ) continue; // MODIFICADO PARA PXP
 					if (typeof move.isMax === 'string') continue;
-					if (move.isNonstandard === 'Past' && !(this.formatType === 'natdex' || this.formatType === 'pkf')) continue;
+					if (move.isNonstandard === 'Past' && !(this.formatType === 'natdex' || this.formatType === 'pxp')) continue; // MODIFICADO PARA PXP
 					if (move.isNonstandard === 'LGPE' && this.formatType !== 'letsgo') continue;
 					moves.push(move.id);
 				}

@@ -1032,6 +1032,7 @@ class BattleTooltips {
 			stats.spa *= 2;
 		}
 
+		// MODIFICADO PARA PXP
 		if (item === 'heartscale' && speciesName === 'Luvdisc') {
 			stats.spa *= 2;
 			stats.spd *= 2;
@@ -1083,6 +1084,7 @@ class BattleTooltips {
 			stats.spa = Math.floor(stats.spa * 1.5);
 			stats.spe = Math.floor(stats.spe * 1.5);
 		}
+		// MODIFICADO PARA PXP
 
 		if (item === 'thickclub') {
 			if (speciesName === 'Marowak' || speciesName === 'Cubone') {
@@ -1090,6 +1092,7 @@ class BattleTooltips {
 			}
 		}
 
+		// MODIFICADO PARA PXP
 		if (item === 'redflute' && speciesName === 'Volbeat' || speciesName === 'Illumise') {
 			stats.def = Math.floor(stats.def * 1.5);
 			stats.spd = Math.floor(stats.spd * 1.5);
@@ -1125,6 +1128,7 @@ class BattleTooltips {
 			stats.atk = Math.floor(stats.spd * 1.5);
 			stats.spe = Math.floor(stats.spe * 1.5);
 		}
+		// MODIFICADO PARA PXP
 
 		if (speciesName === 'Ditto' && !(clientPokemon && 'transform' in clientPokemon.volatiles)) {
 			if (item === 'quickpowder') {

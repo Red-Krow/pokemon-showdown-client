@@ -116,11 +116,13 @@ export const BattleSound = new class {
 		try {
 			const sound = document.createElement('audio');
 
+			// MODIFICADO PARA PXP
 			if(url.startsWith("./")) {
 				sound.src = url;
 			} else {
 				sound.src = 'https://' + Config.routes.client + '/' + url;
 			}
+			// MODIFICADO PARA PXP
 			sound.volume = this.effectVolume / 100;
 			this.soundCache[url] = sound;
 			return sound;

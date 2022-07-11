@@ -46,7 +46,7 @@ function toUserid(text: any) {
 	return toID(text);
 }
 
-const customMons = [ "prinpawn", "coureen", "kincurs", "posord", "toxlime", "toxlimeagua", "toxlimeelectrico", "wintass", "prabbit", "strancloud", "strancloudmega", "darkpikachu", "honedgemonado", "armoredmewtwo", "catermanocaterpie", "micomon", "fancyprobopass", "luckycamerupt", "luckycameruptmega", "wooloka"];
+const customMons = [ "prinpawn", "coureen", "kincurs", "posord", "toxlime", "toxlimeagua", "toxlimeelectrico", "wintass", "prabbit", "strancloud", "strancloudmega", "darkpikachu", "honedgemonado", "armoredmewtwo", "catermanocaterpie", "micomon", "fancyprobopass", "luckycamerupt", "luckycameruptmega", "wooloka"]; // MODIFICADO PARA PXP
 
 type Comparable = number | string | boolean | Comparable[] | {reverse: Comparable};
 const PSUtils = new class {
@@ -622,9 +622,11 @@ const Dex = new class implements ModdedDex {
 			spriteData.cryurl += '.mp3';
 		}
 
+		// MODIFICADO PARA PXP
 		if (customMons.includes(toID(species.name))) {
 			spriteData.cryurl = `./sprites/audio/${toID(species.name)}.mp3`;
 		}
+		// MODIFICADO PARA PXP
 
 		if (animationData[facing + 'f'] && options.gender === 'F') facing += 'f';
 		let allowAnim = !Dex.prefs('noanim') && !Dex.prefs('nogif');
@@ -650,9 +652,11 @@ const Dex = new class implements ModdedDex {
 			spriteData.url += dir + '/' + name + '.png';
 		}
 
+		// MODIFICADO PARA PXP
 		if(customMons.includes(species.id)) {
 			spriteData.url = `./sprites/${dir}/${name}.png`;
 		}
+		// MODIFICADO PARA PXP
 
 		if (!options.noScale) {
 			if (graphicsGen > 4) {
@@ -737,11 +741,13 @@ const Dex = new class implements ModdedDex {
 		let left = (num % 12) * 40;
 		let fainted = ((pokemon as Pokemon | ServerPokemon)?.fainted ? `;opacity:.3;filter:grayscale(100%) brightness(.5)` : ``);
 
+		// MODIFICADO PARA PXP
 		if(customMons.includes(id)) {
 			return `background:transparent url(./sprites/pokemonicons/${id}.png) no-repeat scroll 5px -2px ${fainted}`;
 		} else {
 			return `background:transparent url(${Dex.resourcePrefix}sprites/pokemonicons-sheet.png?v8) no-repeat scroll -${left}px -${top}px${fainted}`;
 		}
+		// MODIFICADO PARA PXP
 	}
 
 	getTeambuilderSpriteData(pokemon: any, gen: number = 0): TeambuilderSpriteData {
@@ -799,9 +805,11 @@ const Dex = new class implements ModdedDex {
 
 		let id = toID(pokemon.species);
 		
+		// MODIFICADO PARA PXP
 		if(customMons.includes(id)) {
 			return 'background-image:url(' + data.spriteDir + shiny + '/' + data.spriteid + '.png);background-position:' + data.x + 'px ' + data.y + 'px;background-repeat:no-repeat';
 		}
+		// MODIFICADO PARA PXP
 
 		return 'background-image:url(' + Dex.resourcePrefix + data.spriteDir + shiny + '/' + data.spriteid + '.png);background-position:' + data.x + 'px ' + data.y + 'px;background-repeat:no-repeat';
 	}
@@ -826,9 +834,11 @@ const Dex = new class implements ModdedDex {
 		if (!type) type = '???';
 		let sanitizedType = type.replace(/\?/g, '%3f');
 
+		// MODIFICADO PARA PXP
 		if(sanitizedType.toLocaleLowerCase() === "unknown") {
 			return `<img src="./sprites/types/${sanitizedType.toLowerCase()}.png" alt="${type}" height="14" width="32" class="pixelated${b ? ' b' : ''}" />`;
 		}
+		// MODIFICADO PARA PXP
 
 		return `<img src="${Dex.resourcePrefix}sprites/types/${sanitizedType}.png" alt="${type}" height="14" width="32" class="pixelated${b ? ' b' : ''}" />`;
 	}

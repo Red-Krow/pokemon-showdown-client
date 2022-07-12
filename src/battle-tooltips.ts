@@ -1036,7 +1036,7 @@ class BattleTooltips {
 		if (item === 'heartscale' && speciesName === 'Luvdisc') {
 			stats.spa *= 2;
 			stats.spd *= 2;
-			stats.spe *= 2;
+			stats.def *= 2;
 		}
 
 		if (item === 'stick') {

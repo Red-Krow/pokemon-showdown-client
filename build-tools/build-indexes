@@ -360,7 +360,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				// MODIFICADO PARA PXP
 				if (isPXP) {
 					const unobtainables = [
-						'Eevee-Starter', 'Floette-Eternal', 'Pichu-Spiky-eared', 'Pikachu-Belle', 'Pikachu-Cosplay', 'Pikachu-Libre', 'Pikachu-PhD', 'Pikachu-Pop-Star', 'Pikachu-Rock-Star', 'Pikachu-Starter', 'Eternatus-Eternamax',
+						'Eevee-Starter', 'Pichu-Spiky-eared', 'Pikachu-Belle', 'Pikachu-Cosplay', 'Pikachu-Libre', 'Pikachu-PhD', 'Pikachu-Pop-Star', 'Pikachu-Rock-Star', 'Pikachu-Starter', 'Eternatus-Eternamax',
 					].map(toID);
 					if (species.isNonstandard && !['pxp', 'past', 'gigantamax'].includes(species.isNonstandard.toLowerCase())) return 'Illegal';
 					if (unobtainables.includes(species.id)) return 'Illegal';
